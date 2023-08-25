@@ -1,27 +1,30 @@
-import React from 'react';
-import './App.scss';
-
-interface Props {
-  onClick: () => void;
-}
-
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+import React, { useState } from 'react';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { Todo } from './types/Todo';
+import { TodoHeader } from './components/TodoHeader/TodoHeader';
+import { TodosContext } from './store/TodosContext';
+import { TodoList } from './components/TodoList/TodoList';
+import { TodoFilter } from './components/TodoFilter/TodoFilter';
+import { FilterOptions } from './types/FilterOptions';
 
 export const App: React.FC = () => {
+  const [todos, setTodos] = useLocalStorage<Todo[]>('todos', []);
+  const [filter, setFilter] = useState(FilterOptions.ALL);
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>
+    <div className="todoapp">
+      <TodosContext.Provider
+        value={{
+          todos,
+          filter,
+          setTodos,
+          setFilter,
+        }}
+      >
+        <TodoHeader />
         <TodoList />
-      </Provider>
+        {todos.length > 0 && (<TodoFilter />)}
+      </TodosContext.Provider>
     </div>
   );
 };
