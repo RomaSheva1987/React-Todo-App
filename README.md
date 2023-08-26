@@ -1,6 +1,6 @@
-# React TypeScript Starter Pack
+# React Todo App
 
-To use this template click `Use this template`
+A single-page application with a user-friendly interface that allows users to create, manage and delete his tasks.
 
 ### Available Scripts
 
