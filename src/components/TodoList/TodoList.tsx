@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useMemo } from 'react';
 import classNames from 'classnames';
 import { TodosContext } from '../../store/TodosContext';
