@@ -65,13 +65,18 @@ export const TodoItem: React.FC<Props> = ({ currentTodo }) => {
   };
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Escape') {
-      setNewTitle(title);
-      setIsDbClicked(false);
-    }
+    switch (event.key) {
+      case 'Escape':
+        setNewTitle(title);
+        setIsDbClicked(false);
+        break;
 
-    if (event.key === 'Enter') {
-      saveNewTitle();
+      case 'Enter':
+        saveNewTitle();
+        break;
+
+      default:
+        break;
     }
   };
 

@@ -15,15 +15,9 @@ export const TodoList: React.FC = () => {
   }, [todos, filter]);
 
   const toggleAllStatuses = () => {
-    if (isAllComplited) {
-      setTodos(todos.map(todo => {
-        return { ...todo, completed: false };
-      }));
-    } else {
-      setTodos(todos.map(todo => {
-        return { ...todo, completed: true };
-      }));
-    }
+    setTodos(todos.map(todo => {
+      return { ...todo, completed: !isAllComplited };
+    }));
   };
 
   return (
